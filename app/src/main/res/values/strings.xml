@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NeetPrep Hiring Challenge</string>
+    <string name="imageView_placeHolder">imageView_placeHolder</string>
 </resources>
