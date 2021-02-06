@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    >
+    android:layout_marginBottom="16dp">
 
     <ImageView
         android:id="@+id/news_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
         android:contentDescription="@string/imageView_placeHolder"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,12 +20,12 @@
         android:id="@+id/news_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="16sp"
+        android:layout_margin="8dp"
         android:maxLines="2"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/news_image"
-        android:layout_margin="8dp"
         tools:text="This is a random text to see the recycler view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
