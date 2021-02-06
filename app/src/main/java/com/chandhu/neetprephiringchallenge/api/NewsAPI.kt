@@ -1,7 +1,7 @@
 package com.chandhu.neetprephiringchallenge.api
 
 import com.chandhu.neetprephiringchallenge.datamodels.NewsResponse
-import com.chandhu.neetprephiringchallenge.utils.Constants.Companion.API_KEY
+import com.chandhu.neetprephiringchallenge.utils.Constant.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,6 +1,6 @@
 package com.chandhu.neetprephiringchallenge.api
 
-import com.chandhu.neetprephiringchallenge.utils.Constants.Companion.BASE_URL
+import com.chandhu.neetprephiringchallenge.utils.Constant.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
