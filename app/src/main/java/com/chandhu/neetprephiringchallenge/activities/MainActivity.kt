@@ -1,11 +1,11 @@
-package com.chandhu.neetprephiringchallenge
+package com.chandhu.neetprephiringchallenge.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.AdapterListUpdateCallback
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chandhu.neetprephiringchallenge.R
 import com.chandhu.neetprephiringchallenge.adapters.NewsAdapter
 import com.chandhu.neetprephiringchallenge.api.RetrofitInstance
 import com.chandhu.neetprephiringchallenge.utils.Constants.Companion.API_KEY
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var newsAdapter : NewsAdapter
+    private lateinit var newsAdapter : NewsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 adapter = newsAdapter
             }
             newsAdapter.differ.submitList(response.body()?.articles)
+            newsAdapter.setOnItemClickListener {
+                val intent : Intent = Intent(this, WebActivity::class.java)
+                intent.putExtra("URL",it.url)
+                startActivity(intent)
+            }
         } else {
             Log.e("Random",response.errorBody().toString())
         }
