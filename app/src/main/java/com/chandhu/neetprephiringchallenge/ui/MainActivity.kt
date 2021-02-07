@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.news.observe(this, Observer {
             when (it) {
                 is Resource.Success -> {
+                    shimmerFrameLayout.stopShimmer()
+                    shimmerFrameLayout.visibility = View.GONE
                     error_button.visibility = View.GONE
                     hideProgressBar()
                     it.data?.let { newsResponse ->
@@ -59,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 is Resource.Error -> {
+                    shimmerFrameLayout.stopShimmer()
+                    shimmerFrameLayout.visibility = View.GONE
                     hideProgressBar()
                     it.message?.let { message ->
                         error_button.text = message
@@ -95,6 +99,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.news.observe(this, Observer {
             when (it) {
                 is Resource.Success -> {
+                    shimmerFrameLayout.stopShimmer()
+                    shimmerFrameLayout.visibility = View.GONE
                     error_button.visibility = View.GONE
                     hideProgressBar()
                     it.data?.let { newsResponse ->
@@ -108,6 +114,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 is Resource.Error -> {
+                    shimmerFrameLayout.stopShimmer()
+                    shimmerFrameLayout.visibility = View.GONE
                     hideProgressBar()
                     swipeContainer.isRefreshing = false
                     it.message?.let { message ->
@@ -124,12 +132,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideProgressBar() {
-        progress_circular.visibility = View.INVISIBLE
+//        progress_circular.visibility = View.INVISIBLE
         isLoading = false
     }
 
     private fun showProgressBar() {
-        progress_circular.visibility = View.VISIBLE
+//        progress_circular.visibility = View.VISIBLE
         isLoading = true
     }
 
