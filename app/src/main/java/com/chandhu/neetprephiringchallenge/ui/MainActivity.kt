@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        setSupportActionBar(toolbar)
+
         val newsRepository = NewsRepository()
         val viewModelFactory = NewsViewModelFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
