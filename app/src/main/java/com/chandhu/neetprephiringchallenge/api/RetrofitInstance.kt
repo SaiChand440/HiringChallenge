@@ -1,13 +1,8 @@
 package com.chandhu.neetprephiringchallenge.api
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.util.Log
 import com.chandhu.neetprephiringchallenge.NewsApplication
 import com.chandhu.neetprephiringchallenge.utils.Constant.Companion.BASE_URL
-import kotlinx.coroutines.*
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,7 +45,7 @@ class RetrofitInstance {
         override fun intercept(chain: Interceptor.Chain): Response {
             val response: Response = chain.proceed(chain.request())
             val cacheControl = CacheControl.Builder()
-                .maxAge(2, TimeUnit.MINUTES)
+                .maxAge(1, TimeUnit.MINUTES)
                 .build()
             return response.newBuilder()
                 .removeHeader("Pragma")
@@ -64,9 +59,9 @@ class RetrofitInstance {
         override fun intercept(chain: Interceptor.Chain): Response {
             val builder: Request.Builder = chain.request().newBuilder()
             if (!NewsApplication().hasNetwork()) {
-                builder.cacheControl(CacheControl.FORCE_CACHE);
+                builder.cacheControl(CacheControl.FORCE_CACHE)
             }
-            return chain.proceed(builder.build());
+            return chain.proceed(builder.build())
         }
     }
 }

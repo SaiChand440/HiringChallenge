@@ -26,7 +26,7 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
         news.postValue(handleNewsResponse(response))
     }
 
-    private fun handleNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+     fun handleNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
                 newsPage++

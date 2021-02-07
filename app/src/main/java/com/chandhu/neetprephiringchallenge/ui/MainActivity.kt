@@ -1,15 +1,10 @@
 package com.chandhu.neetprephiringchallenge.ui
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AbsListView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -18,16 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chandhu.neetprephiringchallenge.R
 import com.chandhu.neetprephiringchallenge.adapters.NewsAdapter
-import com.chandhu.neetprephiringchallenge.api.RetrofitInstance
 import com.chandhu.neetprephiringchallenge.repository.NewsRepository
-import com.chandhu.neetprephiringchallenge.utils.Constant.Companion.API_KEY
 import com.chandhu.neetprephiringchallenge.utils.Constant.Companion.QUERY_PAGE_SIZE
 import com.chandhu.neetprephiringchallenge.utils.Resource
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.Cache
 
 
 class MainActivity : AppCompatActivity() {
