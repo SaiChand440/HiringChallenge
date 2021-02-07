@@ -58,4 +58,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
+
+    fun clear() {
+        differ.currentList.clear()
+    }
+
+    fun addAll(mutableList: MutableList<Article>) {
+        differ.currentList.addAll(mutableList)
+        notifyDataSetChanged()
+    }
 }

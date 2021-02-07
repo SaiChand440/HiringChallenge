@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var viewModel: NewsViewModel
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,10 +51,10 @@ class MainActivity : AppCompatActivity() {
                     hideProgressBar()
                     it.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
-                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE+2
+                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.newsPage == totalPages
-                        if(isLastPage){
-                            rvNewsArticles.setPadding(0,0,0,0)
+                        if (isLastPage) {
+                            rvNewsArticles.setPadding(0, 0, 0, 0)
                         }
                     }
                 }
@@ -68,6 +71,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        swipeContainer.setOnRefreshListener {
+            doNetworkRequest()
+        }
+
+        swipeContainer.setColorSchemeColors(
+            getColor(android.R.color.holo_blue_light),
+            getColor(android.R.color.holo_green_light),
+            getColor(android.R.color.holo_orange_light),
+            getColor(android.R.color.holo_red_light)
+        )
+
         setUpRecyclerView()
 
         newsAdapter.setOnItemClickListener {
@@ -75,6 +89,38 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("URL", it.url)
             startActivity(intent)
         }
+    }
+
+    private fun doNetworkRequest() {
+        viewModel.news.observe(this, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    error_button.visibility = View.GONE
+                    hideProgressBar()
+                    it.data?.let { newsResponse ->
+                        newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        swipeContainer.isRefreshing = false
+                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
+                        isLastPage = viewModel.newsPage == totalPages
+                        if (isLastPage) {
+                            rvNewsArticles.setPadding(0, 0, 0, 0)
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    swipeContainer.isRefreshing = false
+                    it.message?.let { message ->
+                        error_button.text = message
+                        error_button.visibility = View.VISIBLE
+                    }
+                }
+                is Resource.Loading -> {
+                    swipeContainer.isRefreshing = false
+                    showProgressBar()
+                }
+            }
+        })
     }
 
     private fun hideProgressBar() {
@@ -100,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
