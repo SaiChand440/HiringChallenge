@@ -13,7 +13,7 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
     val news: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var newsPage = 1
-    var newsResponse : NewsResponse? = null
+    private var newsResponse : NewsResponse? = null
 
 
     init {

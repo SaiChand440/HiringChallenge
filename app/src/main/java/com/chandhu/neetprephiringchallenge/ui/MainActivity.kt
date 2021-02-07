@@ -1,6 +1,9 @@
 package com.chandhu.neetprephiringchallenge.ui
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.Cache
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.news.observe(this, Observer {
             when (it) {
                 is Resource.Success -> {
+                    error_button.visibility = View.GONE
                     hideProgressBar()
                     it.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
@@ -53,7 +58,8 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Error -> {
                     hideProgressBar()
                     it.message?.let { message ->
-                        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                        error_button.text = message
+                        error_button.visibility = View.VISIBLE
                     }
                 }
                 is Resource.Loading -> {
