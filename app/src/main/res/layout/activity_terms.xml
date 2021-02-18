@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TermsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/termsAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/gradient"
+        app:title="@string/page_title"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        >
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/click_here_to_view_the_terms_policy"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="64dp"
+        android:textColor="@color/teal_200"
+        />
+
+    <TextView
+        android:id="@+id/policy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/click_here_to_view_the_privacy_policy"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="128dp"
+        android:textColor="@color/teal_200"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="262dp"
+        android:textAlignment="center"
+        android:textColor="@color/teal_700"
+        android:text="@string/all_the_news_are_provided_by_third_party_sources_mentioned_under_the_description_i_have_no_liability_about_the_news_published_and_do_not_hold_responsible_for_the_news_being_displayed" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

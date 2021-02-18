@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">NeetPrep Hiring Challenge</string>
+    <string name="app_name">NewsIt</string>
     <string name="imageView_placeHolder">imageView_placeHolder</string>
     <string name="no_internet_please_try_again">No internet Please try again</string>
     <string name="page_title">News</string>
     <string name="content_description_favorite">back button</string>
     <string name="back_from_the_activity">Back from the activity</string>
+    <string name="click_here_to_view_the_privacy_policy">Click here to view the privacy policy</string>
+    <string name="click_here_to_view_the_terms_policy">Click here to view the terms policy</string>
+    <string name="all_the_news_are_provided_by_third_party_sources_mentioned_under_the_description_i_have_no_liability_about_the_news_published_and_do_not_hold_responsible_for_the_news_being_displayed">All the news are provided by third party sources mentioned under the description. I have no liability about the news published and do not hold responsible for the news being displayed</string>
 </resources>

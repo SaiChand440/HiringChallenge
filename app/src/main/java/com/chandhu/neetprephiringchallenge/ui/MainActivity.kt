@@ -29,11 +29,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        setSupportActionBar(toolbar)
-
         val newsRepository = NewsRepository()
         val viewModelFactory = NewsViewModelFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
+
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.terms_and_conditions -> {
+                    val intent = Intent(this,TermsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         viewModel.news.observe(this, Observer {
             when (it) {

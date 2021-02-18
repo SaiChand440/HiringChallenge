@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/favorite"
-        android:icon="@drawable/ic_baseline_arrow_back_24"
+        android:id="@+id/terms_and_conditions"
+        android:icon="@drawable/ic_baseline_terms_24"
         android:contentDescription="@string/content_description_favorite"
         app:showAsAction="ifRoom"
 
